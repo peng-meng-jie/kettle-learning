@@ -304,8 +304,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>112</xloc>
-      <yloc>112</yloc>
+      <xloc>80</xloc>
+      <yloc>128</yloc>
       <attributes_kjc />
     </entry>
     <entry>
@@ -316,8 +316,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>368</xloc>
-      <yloc>112</yloc>
+      <xloc>336</xloc>
+      <yloc>128</yloc>
       <attributes_kjc />
     </entry>
     <entry>
@@ -354,8 +354,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>240</xloc>
-      <yloc>112</yloc>
+      <xloc>208</xloc>
+      <yloc>128</yloc>
       <attributes_kjc />
     </entry>
   </entries>
@@ -383,10 +383,10 @@
     <notepad>
       <note>Case1：
 同步一张表数据到另一张表
-插入/更新模式、多表并行抽取</note>
-      <xloc>112</xloc>
-      <yloc>16</yloc>
-      <width>187</width>
+插入/更新模式、可多表并行抽取</note>
+      <xloc>80</xloc>
+      <yloc>32</yloc>
+      <width>200</width>
       <heigth>56</heigth>
       <fontname>.SF NS Text</fontname>
       <fontsize>13</fontsize>

@@ -382,10 +382,10 @@
   <notepads>
     <notepad>
       <note>Case3：
-跨库join表</note>
+跨库join表，将name更新至stat表</note>
       <xloc>176</xloc>
       <yloc>32</yloc>
-      <width>72</width>
+      <width>207</width>
       <heigth>42</heigth>
       <fontname>.SF NS Text</fontname>
       <fontsize>13</fontsize>

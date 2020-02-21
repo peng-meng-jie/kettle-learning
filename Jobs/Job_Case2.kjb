@@ -304,7 +304,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>128</xloc>
+      <xloc>96</xloc>
       <yloc>128</yloc>
       <attributes_kjc />
     </entry>
@@ -316,7 +316,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>448</xloc>
+      <xloc>416</xloc>
       <yloc>128</yloc>
       <attributes_kjc />
     </entry>
@@ -354,7 +354,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>288</xloc>
+      <xloc>256</xloc>
       <yloc>128</yloc>
       <attributes_kjc />
     </entry>
@@ -384,7 +384,7 @@
       <note>Case2：
 文件数据抽取到表
 分隔符进行数据筛选</note>
-      <xloc>128</xloc>
+      <xloc>96</xloc>
       <yloc>48</yloc>
       <width>130</width>
       <heigth>53</heigth>

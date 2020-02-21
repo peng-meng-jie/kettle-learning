@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Trans_Case3</name>
+    <name>Trans_UpdateAnaDate</name>
     <description />
     <extended_description />
     <trans_version />
@@ -427,19 +427,22 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2020/01/09 12:10:10.569</created_date>
+    <created_date>2020/02/21 12:22:29.252</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/01/09 12:10:10.569</modified_date>
-    <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
+    <modified_date>2020/02/21 12:22:29.252</modified_date>
+    <key_for_session_key />
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
     <notepad>
-      <note>将name更新至stat表中</note>
-      <xloc>480</xloc>
-      <yloc>51</yloc>
-      <width>146</width>
-      <heigth>26</heigth>
+      <note>/**************************************************
+ 2020-02-21 创建 xiaoyou
+ 更新分析日，不依赖前面参数
+ **************************************************/</note>
+      <xloc>192</xloc>
+      <yloc>32</yloc>
+      <width>313</width>
+      <heigth>74</heigth>
       <fontname>.SF NS Text</fontname>
       <fontsize>13</fontsize>
       <fontbold>N</fontbold>
@@ -457,7 +460,7 @@
     </notepad>
   </notepads>
   <connection>
-    <name>MySQL_DB_Xiao_W</name>
+    <name>xiao_MySQL_R</name>
     <server>127.0.0.1</server>
     <type>MYSQL</type>
     <access>Native</access>
@@ -512,11 +515,11 @@
     </attributes>
   </connection>
   <connection>
-    <name>MySQL_DB_You_W</name>
+    <name>xiao_MySQL_W</name>
     <server>127.0.0.1</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>you</database>
+    <database>xiao</database>
     <port>3306</port>
     <username>root</username>
     <password>Encrypted 2be98afc86aa7f2e4cb79ce10cc9da0ce</password>
@@ -568,38 +571,18 @@
   </connection>
   <order>
     <hop>
-      <from>Xiao库User表</from>
-      <to>sort_id</to>
+      <from>table_xiao_etl_runtime</from>
+      <to>JavaScript代码</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>You库Stat表</from>
-      <to>sort_userid</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sort_id</from>
-      <to>记录集连接</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>sort_userid</from>
-      <to>记录集连接</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>记录集连接</from>
-      <to>字段选择</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>字段选择</from>
-      <to>更新</to>
+      <from>JavaScript代码</from>
+      <to>Update_AnaDate</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Xiao库User表</name>
+    <name>table_xiao_etl_runtime</name>
     <type>TableInput</type>
     <description />
     <distribute>Y</distribute>
@@ -609,12 +592,14 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>MySQL_DB_Xiao_W</connection>
-    <sql>SELECT * FROM User</sql>
+    <connection>xiao_MySQL_R</connection>
+    <sql>SELECT etl_name, datadatetime
+FROM xiao.etl_runtime
+where etl_name='Job_Case4'</sql>
     <limit>0</limit>
     <lookup />
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
     <attributes />
     <cluster_schema />
@@ -625,14 +610,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>112</xloc>
-      <yloc>80</yloc>
+      <xloc>160</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>You库Stat表</name>
-    <type>TableInput</type>
+    <name>JavaScript代码</name>
+    <type>ScriptValueMod</type>
     <description />
     <distribute>Y</distribute>
     <custom_distribution />
@@ -641,53 +626,25 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>MySQL_DB_You_W</connection>
-    <sql>SELECT * FROM Stat</sql>
-    <limit>0</limit>
-    <lookup />
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>112</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>sort_id</name>
-    <type>SortRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>N</unique_rows>
+    <compatible>N</compatible>
+    <optimizationLevel>9</optimizationLevel>
+    <jsScripts>
+      <jsScript>
+        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var anaDate=str2date(datadatetime,"yyyy-MM-dd HH:mm:ss");
+var myAnaDate=dateAdd(anaDate,'m',1);
+//Alert(myAnaDate);</jsScript_script>
+      </jsScript>
+    </jsScripts>
     <fields>
       <field>
-        <name>id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
+        <name>myAnaDate</name>
+        <rename>myAnaDate</rename>
+        <type>Date</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
       </field>
     </fields>
     <attributes />
@@ -699,89 +656,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>256</xloc>
-      <yloc>80</yloc>
+      <xloc>352</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>sort_userid</name>
-    <type>SortRows</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory />
-    <compress>N</compress>
-    <compress_variable />
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>userid</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>字段选择</name>
-    <type>SelectValues</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <fields>
-      <field>
-        <name>name</name>
-      </field>
-      <field>
-        <name>userid</name>
-      </field>
-      <select_unspecified>N</select_unspecified>
-    </fields>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>528</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>更新</name>
+    <name>Update_AnaDate</name>
     <type>Update</type>
     <description />
     <distribute>Y</distribute>
@@ -791,7 +672,7 @@
       <method>none</method>
       <schema_name />
     </partitioning>
-    <connection>MySQL_DB_You_W</connection>
+    <connection>xiao_MySQL_W</connection>
     <skip_lookup>N</skip_lookup>
     <commit>100</commit>
     <use_batch>N</use_batch>
@@ -799,16 +680,16 @@
     <ignore_flag_field />
     <lookup>
       <schema />
-      <table>Stat</table>
+      <table>etl_runtime</table>
       <key>
-        <name>userid</name>
-        <field>userid</field>
+        <name>etl_name</name>
+        <field>etl_name</field>
         <condition>=</condition>
         <name2 />
       </key>
       <value>
-        <name>name</name>
-        <rename>name</rename>
+        <name>datadatetime</name>
+        <rename>myAnaDate</rename>
       </value>
     </lookup>
     <attributes />
@@ -820,42 +701,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
-      <yloc>128</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>记录集连接</name>
-    <type>MergeJoin</type>
-    <description />
-    <distribute>Y</distribute>
-    <custom_distribution />
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name />
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>sort_id</step1>
-    <step2>sort_userid</step2>
-    <keys_1>
-      <key>id</key>
-    </keys_1>
-    <keys_2>
-      <key>userid</key>
-    </keys_2>
-    <attributes />
-    <cluster_schema />
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>400</xloc>
-      <yloc>128</yloc>
+      <xloc>544</xloc>
+      <yloc>160</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

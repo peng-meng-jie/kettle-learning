@@ -547,13 +547,13 @@
   </connection>
   <order>
     <hop>
-      <from>表输入</from>
-      <to>插入 / 更新</to>
+      <from>table_xiao_User</from>
+      <to>table_you_User</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>插入 / 更新</name>
+    <name>table_you_User</name>
     <type>InsertUpdate</type>
     <description />
     <distribute>Y</distribute>
@@ -611,7 +611,7 @@
     </GUI>
   </step>
   <step>
-    <name>表输入</name>
+    <name>table_xiao_User</name>
     <type>TableInput</type>
     <description />
     <distribute>Y</distribute>

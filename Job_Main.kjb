@@ -305,7 +305,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>64</xloc>
-      <yloc>112</yloc>
+      <yloc>208</yloc>
       <attributes_kjc />
     </entry>
     <entry>
@@ -316,8 +316,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>592</xloc>
-      <yloc>112</yloc>
+      <xloc>688</xloc>
+      <yloc>208</yloc>
       <attributes_kjc />
     </entry>
     <entry>
@@ -353,8 +353,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>196</xloc>
-      <yloc>112</yloc>
+      <xloc>384</xloc>
+      <yloc>80</yloc>
       <attributes_kjc />
     </entry>
     <entry>
@@ -390,8 +390,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>328</xloc>
-      <yloc>112</yloc>
+      <xloc>256</xloc>
+      <yloc>208</yloc>
       <attributes_kjc />
     </entry>
     <entry>
@@ -427,8 +427,45 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>460</xloc>
-      <yloc>112</yloc>
+      <xloc>384</xloc>
+      <yloc>208</yloc>
+      <attributes_kjc />
+    </entry>
+    <entry>
+      <name>Job_Case4</name>
+      <description />
+      <type>JOB</type>
+      <attributes />
+      <specification_method>filename</specification_method>
+      <job_object_id />
+      <filename>/Users/you.xiao/Documents/learning/kettle/Case/Jobs/Job_Case4.kjb</filename>
+      <jobname />
+      <directory />
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile />
+      <logext />
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name />
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <run_configuration>Pentaho local</run_configuration>
+      <parameters>
+        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>
+      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>512</xloc>
+      <yloc>208</yloc>
       <attributes_kjc />
     </entry>
   </entries>
@@ -443,15 +480,6 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Job_Case1</from>
-      <to>Job_Case2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Job_Case2</from>
       <to>Job_Case3</to>
       <from_nr>0</from_nr>
@@ -461,7 +489,34 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Start</from>
+      <to>Job_Case2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Job_Case1</from>
+      <to>成功</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Job_Case3</from>
+      <to>Job_Case4</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Job_Case4</from>
       <to>成功</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -472,12 +527,12 @@
   </hops>
   <notepads>
     <notepad>
-      <note>主Job：
-入口</note>
+      <note>主Job入口：
+子Job依赖关系</note>
       <xloc>64</xloc>
       <yloc>32</yloc>
-      <width>59</width>
-      <heigth>40</heigth>
+      <width>99</width>
+      <heigth>42</heigth>
       <fontname>.SF NS Text</fontname>
       <fontsize>13</fontsize>
       <fontbold>N</fontbold>
